@@ -1,5 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import book1 from '../images/book1.png'
+
+const getLocalStorage = () =>{
+  let records = localStorage.getItem('record')
+  if(records) {
+     return JSON.parse(localStorage.getItem('record'))
+  }else{
+    return records[""]
+  }
+}
+
 
 function ToDoList() {
 
@@ -16,12 +26,12 @@ function ToDoList() {
     const name = e.target.name
     const value = e.target.value
     setFormInput({ ...formInput, [name]: value })
-
   }
 
   //to put new value we create record
   // yo record state le garda naya data haru store garchha with the help of which we can display the lists
-  const [record, setRecord] = useState([])
+
+  const [record, setRecord] = useState(getLocalStorage())
 
   // submit function
 
@@ -44,11 +54,19 @@ function ToDoList() {
     setRecord(upDateItems)
   };
 
+
+  // place items in local storage
+  useEffect(() => {
+    localStorage.setItem('record', JSON.stringify(record));
+  }, [record]);
+
   // edit function
 
   const handleEdit = () => {
 
   }
+
+
 
   return (
     <div className=' flex flex-col justify-center font-mono'>
@@ -79,12 +97,12 @@ function ToDoList() {
         </form>
       </div>
 
-      <hr class="h-px bg-gray-200 border-0 dark:bg-gray-100 mt-3"></hr>
+      {/* <hr class="h-px w-full bg-gray-200 border-0 dark:bg-gray-100 mt-3"></hr> */}
 
       {/* table */}
 
-      <div class=" flex flex-col w-full h-full text-white shadow-md rounded-xl bg-clip-border ">
-        <table className="text-left table-auto min-w-max font-mono overflow-auto">
+      <div class=" flex mt-3 flex-col w-full h-full text-white shadow-md rounded-xl  ">
+        <table className="text-left font-mono">
           <tr className='text-2xl'>
             <th className="p-3 border-b">
               <p>SN</p></th>
@@ -109,8 +127,8 @@ function ToDoList() {
                   <td className="p-3 border-b">{data.lastName}</td>
                   <td className="p-3 border-b">{data.address}</td>
                   <td className="p-3 border-b">{data.occupation}</td>
-                  <td className="p-3 flex gap-3 ">
-                    <button onClick={() => handleDelete(indx)}>Delete</button>
+                  <td className="gap-3">
+                    <button className='mr-3' onClick={() => handleDelete(indx)}>Delete</button>
                     <button onClick={() => handleEdit(indx)}>Edit</button>
                   </td>
                 </tr>
