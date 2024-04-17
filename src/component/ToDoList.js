@@ -24,7 +24,7 @@ function ToDoList() {
     e.preventDefault()
 
 
-    if (!formInput.firstName || !formInput.lastName || !formInput.address || !formInput.occupation ) {
+    if (!formInput.firstName || !formInput.lastName || !formInput.address || !formInput.occupation) {
       alert("fill form properly")
     }
     else {
@@ -41,33 +41,34 @@ function ToDoList() {
 
 
   return (
-    <>
-      <div>
-        <div>
-          <img src={book1} alt='book' />
-          <h1>Fill The Form</h1>
+    <div className='h-screen w-full gap-8 flex flex-col justify-center bg-teal-950'>
+
+      <div className='flex w-full flex-col items-center justify-center font-mono text-xl text-teal-50 font-sm '>
+        <div className='flex flex-col items-center mb-5'>
+          <img src={book1} alt='book' className='h-24 w-24' />
+          <p className='text-3xl'>Fill The Form</p>
         </div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='firstName'>First Name</label><br />
-            <input name='firstName' type='text' id='firstName' placeholder='firstname' value={formInput.firstName} onChange={handleSetInput} />
+          <div className='mt-4'>
+            <label htmlFor='firstName'>First Name: </label><br />
+            <input className=' w-96 px-2 py-2 text-slate-900 rounded-lg' name='firstName' type='text' id='firstName' placeholder='firstname' value={formInput.firstName} onChange={handleSetInput} />
           </div>
-          <div>
-            <label htmlFor='lastName'>Last Name</label><br />
-            <input name='lastName' type='text' id='lastName' placeholder='lastname' value={formInput.lastName} onChange={handleSetInput} />
+          <div className='mt-4'>
+            <label htmlFor='lastName'>Last Name: </label><br />
+            <input className='w-96 px-2 py-2 text-slate-900 rounded-lg' name='lastName' type='text' id='lastName' placeholder='lastname' value={formInput.lastName} onChange={handleSetInput} />
           </div>
-          <div>
-            <label htmlFor='address'>Address</label><br />
-            <input name='address' type='text' id='address' placeholder='address' value={formInput.address} onChange={handleSetInput} />
+          <div className='mt-4'>
+            <label htmlFor='address'>Address: </label><br />
+            <input className='w-96 px-2 py-2 text-slate-900 rounded-lg' name='address' type='text' id='address' placeholder='address' value={formInput.address} onChange={handleSetInput} />
           </div>
-          <div>
-            <label htmlFor='occupation'>Occupation</label><br />
-            <input name='occupation' type='text' id='occupation' placeholder='occupation' value={formInput.occupation} onChange={handleSetInput} />
+          <div className='mt-4'>
+            <label htmlFor='occupation'>Occupation: </label><br />
+            <input className='w-96 px-2 py-2 text-slate-900 rounded-lg' name='occupation' type='text' id='occupation' placeholder='occupation' value={formInput.occupation} onChange={handleSetInput} />
           </div>
-          <button type="submit">Submit</button>
+          <button className=' mt-4 w-96 px-2 py-2 text-slate-900 rounded-lg bg-slate-900 text-teal-100' type="submit">Submit</button>
         </form>
       </div>
-
+        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-100"></hr>
       <div>
         {
 
@@ -95,8 +96,11 @@ function ToDoList() {
       </div>
 
 
-    </>
+    </div>
   )
 }
 
 export default ToDoList
+
+
+
